@@ -1,42 +1,13 @@
 <?php
 
-    //print_r($_POST);
-
-    class Mensagem {
-
-        private $para = null;
-        private $assunto = null;
-        private $mensagem = nul;
-
-        public function __get($atributo) {
-            return $this->$atributo;
-        }
-
-        public function __set($atributo, $valor) {
-            $this->$atributo = $valor;
-        }
-
-        public function mensagemValida(){
-            if(empty($this->para) || empty($this->assunto) || empty($this->mensagem)){
-                return false;
-            }
-
-            return true;
-        }
-    }
-
-    $mensagem = new Mensagem();
-
-    $mensagem->__set('para', $_POST['para']);
-    $mensagem->__set('assunto', $_POST['assunto']);
-    $mensagem->__set('mensagem', $_POST['mensagem']);
-
-    //print_r($mensagem);
-
-    if($mensagem->mensagemValida()) {
-        echo 'Mensagem válida';
-    }else {
-        echo 'Mensagem inválida';
-    }
-
     
+
+    require "../app_send_mail/bibliotecas/PHPMailer/OAuth.php";
+    require "../app_send_mail/bibliotecas/PHPMailer/POP3.php";
+    require "../app_send_mail/bibliotecas/PHPMailer/SMTP.php";
+    require "../app_send_mail/bibliotecas/PHPMailer/PHPMailer.php";
+    require "../app_send_mail/bibliotecas/PHPMailer/Exception.php";
+
+    require '../app_send_mail/processa_envio.php';
+
+?>
